@@ -23,15 +23,14 @@ import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TriviaRecyclerFragment extends Fragment {
+public class CategoriesRecyclerFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-    public TriviaRecyclerFragment() {
+    public CategoriesRecyclerFragment() {
         // Required empty public constructor
     }
 
@@ -40,23 +39,23 @@ public class TriviaRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_trivia_recycler, container, false);
+        View view = inflater.inflate(R.layout.fragment_categories_recycler, container, false);
 
 
-        recyclerView = view.findViewById(R.id.rv);
+        recyclerView = view.findViewById(R.id.rv2);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        final TriviaAdapter triviaAdapter = new TriviaAdapter();
+        final CategoriesAdapter categoriesAdapter = new CategoriesAdapter();
         final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
-        String url = "http://jservice.io/api/clues?category=6";
+        String url = "http://jservice.io/api/categories?count=100";
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                Trivia[] triviaArray = gson.fromJson(response, Trivia[].class);
-                List<Trivia> triviaList = Arrays.asList(triviaArray);
-                triviaAdapter.setData(triviaList);
-                recyclerView.setAdapter(triviaAdapter);
+                Category[] triviaArray = gson.fromJson(response, Category[].class);
+                List<Category> triviaList = Arrays.asList(triviaArray);
+                categoriesAdapter.setData(triviaList);
+                recyclerView.setAdapter(categoriesAdapter);
                 requestQueue.stop();
             }
         };
@@ -77,11 +76,4 @@ public class TriviaRecyclerFragment extends Fragment {
         return view;
 
     }
-@Override
-    public void onResume(){
-        super.onResume();
-    Toast.makeText(getActivity(), "You have resumed", Toast.LENGTH_SHORT).show();
-
-    }
-
 }

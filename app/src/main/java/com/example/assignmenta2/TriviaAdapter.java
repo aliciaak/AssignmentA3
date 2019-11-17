@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,13 +47,33 @@ public class TriviaAdapter extends RecyclerView.Adapter<TriviaAdapter.TriviaView
     public static class TriviaViewHolder extends RecyclerView.ViewHolder {
         public View view;
         public TextView questionText;
+        public TextView answert;
+        public Button answerb;
 
         public TriviaViewHolder(View v){
             super(v);
             view = v;
             questionText = v.findViewById(R.id.questionText);
+            answert = v.findViewById(R.id.answertext);
+            answerb = v.findViewById(R.id.answerbutton);
         }
-        public void bind(final Trivia trivia) {questionText.setText(trivia.getQuestion());}
-    }
 
+        public void bind(final Trivia trivia) {
+
+            questionText.setText(trivia.getQuestion());
+
+
+            answerb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String s1 = trivia.getAnswer();
+                    String replaceString = s1.replace("<i>","");
+                    String s2 = replaceString;
+                    String replaceString3 = s2.replace("</i>", "");
+                    answert.setText(replaceString3);;
+                }
+            });
+        }
+
+    }
 }

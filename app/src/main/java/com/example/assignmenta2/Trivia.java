@@ -11,13 +11,14 @@ public class Trivia {
         this.question = question;
     }
 
-    public String getCorrect_answer() {
-        return correct_answer;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setCorrect_answer(String correct_answer) {
-        this.correct_answer = correct_answer;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
-    private String correct_answer;
+    private String answer;
+
 }

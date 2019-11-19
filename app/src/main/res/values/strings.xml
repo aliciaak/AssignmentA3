@@ -12,7 +12,14 @@
     <string name="changeme">third feature</string>
     <string name="description3">description 3</string>
 
-    <string name="text">text</string>
+    <string name="pt_100">$100</string>
+    <string name="pt_200">$200</string>
+    <string name="pt_300">$300</string>
+    <string name="pt_400">$400</string>
+    <string name="pt_500">$500</string>
+
     <string name="view_ans">View Answer</string>
+
+    <string name="text">text</string>
 
 </resources>

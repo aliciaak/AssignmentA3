@@ -1,6 +1,7 @@
 package com.example.assignmenta2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,15 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.category_title.setText(categoryData.get(position).title);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+        String upperString = categoryData.get(position).title.substring(0, 1).toUpperCase() + categoryData.get(position).title.substring(1);
+        holder.category_title.setText(upperString);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mContext.startActivity(new Intent(mContext, PointScreen.class).putExtra("category",categoryData.get(position)));
+            }
+        });
     }
 
     @Override

@@ -22,7 +22,7 @@ public class InsertCategoriesAsyncTask extends AsyncTask<Category, Integer, Stri
     @Override
     protected String doInBackground(Category... categories) {
         database.categoryDao().insertAll(categories);
-        return "Records inserted into ROOM.";
+        return "Here are all the categories. Have fun!";
     }
 
     @Override

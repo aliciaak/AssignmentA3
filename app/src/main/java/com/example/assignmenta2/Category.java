@@ -1,23 +1,29 @@
 package com.example.assignmenta2;
 
-public class Category {
-    private int id;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+@Entity
+public class Category implements Serializable {
+    @PrimaryKey
+    public int id;
+
+    @SerializedName("title")
+    public String title;
 
     public int getId() {
-        return id;
-    }
+        return id; }
 
     public void setId(int id) {
-        this.id = id;
-    }
+        this.id = id; }
 
     public String getTitle() {
-        return title;
-    }
+        return title; }
 
     public void setTitle(String title) {
-        this.title = title;
-    }
-
-    private String title;
+        this.title = title; }
 }

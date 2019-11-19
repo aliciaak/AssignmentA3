@@ -1,6 +1,5 @@
 package com.example.assignmenta2;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,8 +54,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             super(v);
             view = v;
             categoryText = v.findViewById(R.id.categoryt);
-
         }
+
         public void bind(final Category category) {
             categoryText.setText(category.getTitle());
         }

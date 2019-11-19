@@ -3,4 +3,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="think_tank">Think Tank</string>
+    <string name="get_quizzical">Let\'s Get Quizzical!</string>
+    <string name="description1">description 1</string>
+    <string name="random_fact">Random Fact</string>
+    <string name="description2">description 2</string>
+    <string name="changeme">third feature</string>
+    <string name="description3">description 3</string>
+
+    <string name="text">text</string>
+    <string name="view_ans">View Answer</string>
+
 </resources>

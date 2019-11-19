@@ -1,6 +1,5 @@
 package com.example.assignmenta2;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -33,7 +32,6 @@ public class CategoriesRecyclerFragment extends Fragment {
     public CategoriesRecyclerFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,6 +72,5 @@ public class CategoriesRecyclerFragment extends Fragment {
         requestQueue.add(stringRequest);
 
         return view;
-
     }
 }

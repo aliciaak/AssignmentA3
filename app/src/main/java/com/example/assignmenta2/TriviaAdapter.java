@@ -31,12 +31,12 @@ public class TriviaAdapter extends RecyclerView.Adapter<TriviaAdapter.TriviaView
         TriviaViewHolder triviaViewHolder = new TriviaViewHolder(view);
         return triviaViewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull TriviaViewHolder holder, int position) {
         final Trivia triviaAtPosition = triviaToAdapt.get(position);
         final Context context = holder.view.getContext();
         holder.bind(triviaAtPosition);
-
     }
 
     @Override
@@ -62,7 +62,6 @@ public class TriviaAdapter extends RecyclerView.Adapter<TriviaAdapter.TriviaView
 
             questionText.setText(trivia.getQuestion());
 
-
             answerb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -70,7 +69,7 @@ public class TriviaAdapter extends RecyclerView.Adapter<TriviaAdapter.TriviaView
                     String replaceString = s1.replace("<i>","");
                     String s2 = replaceString;
                     String replaceString3 = s2.replace("</i>", "");
-                    answert.setText(replaceString3);;
+                    answert.setText(replaceString3);
                 }
             });
         }

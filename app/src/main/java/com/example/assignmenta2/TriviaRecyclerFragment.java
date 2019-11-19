@@ -1,6 +1,5 @@
 package com.example.assignmenta2;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,7 +22,6 @@ import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -35,13 +33,11 @@ public class TriviaRecyclerFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_trivia_recycler, container, false);
-
 
         recyclerView = view.findViewById(R.id.rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
@@ -75,13 +71,11 @@ public class TriviaRecyclerFragment extends Fragment {
         requestQueue.add(stringRequest);
 
         return view;
-
     }
+
 @Override
     public void onResume(){
         super.onResume();
     Toast.makeText(getActivity(), "You have resumed", Toast.LENGTH_SHORT).show();
-
     }
-
 }

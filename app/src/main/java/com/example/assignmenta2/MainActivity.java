@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     private void swapFragment(Fragment fragment) {

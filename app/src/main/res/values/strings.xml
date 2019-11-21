@@ -12,11 +12,20 @@
     <string name="changeme">third feature</string>
     <string name="description3">description 3</string>
 
+    <string name="quiz">QUIZ</string>
+    <string name="quiz_desc">Let\s Get Quizzical! Click me to expand your knowledge in a Jeopardy-style quiz!</string>
     <string name="pt_100">$100</string>
     <string name="pt_200">$200</string>
     <string name="pt_300">$300</string>
     <string name="pt_400">$400</string>
     <string name="pt_500">$500</string>
+
+
+    <string name="learn">LEARN</string>
+    <string name="learn_desc">If you would like to learn new random facts, this is the place to be!</string>
+    <string name="fetch_fact">Fetching fact&#8230;</string>
+    <string name="refresh">REFRESH</string>
+
 
     <string name="view_ans">View Answer</string>
 

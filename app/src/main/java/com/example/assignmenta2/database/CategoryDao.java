@@ -20,6 +20,9 @@ public interface CategoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Category[] categories);
 
+    @Query("DELETE FROM category")
+    void deleteAll();
+
     @Delete
     void delete(Category category);
 }

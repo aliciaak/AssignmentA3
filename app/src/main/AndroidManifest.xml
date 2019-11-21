@@ -27,6 +27,7 @@
         <activity android:name=".HomeActivity"/>
         <activity android:name=".PointScreen" />
         <activity android:name=".QuestionAnswerActivity"/>
+        <activity android:name=".RandomFactActivity"/>
 
     </application>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splash_home"
@@ -9,20 +9,31 @@
     android:background="@color/black"
     tools:context=".SplashScreen">
 
-    <ImageView
-        android:id="@+id/lightbulb"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/light"
-        android:contentDescription="@null"
-        android:layout_centerHorizontal="true">
-
-    </ImageView>
+    <LinearLayout android:layout_gravity="bottom"
+        android:gravity="bottom|center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
 
     <com.felipecsl.gifimageview.library.GifImageView
         android:id="@+id/gif"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"/>
+        android:layout_height="match_parent" />
+    </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_weight="0.5"
+        android:gravity="top|center">
+
+    <ImageView
+        android:id="@+id/lightbulb"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/light"
+        android:contentDescription="@null" />
+
+    </LinearLayout>
+</LinearLayout>

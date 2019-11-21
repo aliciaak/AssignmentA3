@@ -20,6 +20,10 @@
     <string name="pt_400">$400</string>
     <string name="pt_500">$500</string>
 
+    <string name="question">Question</string>
+    <string name="hint">Type your answer here&#8230;</string>
+    <string name="btn_go">GO</string>
+
 
     <string name="learn">LEARN</string>
     <string name="learn_desc">If you would like to learn new random facts, this is the place to be!</string>

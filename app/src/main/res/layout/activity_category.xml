@@ -8,11 +8,16 @@
     android:orientation="vertical"
     tools:context=".ActivityCategory">
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp" />
 

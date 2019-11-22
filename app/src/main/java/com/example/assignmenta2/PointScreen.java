@@ -23,14 +23,16 @@ public class PointScreen extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.point_screen);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Selection");
-        earnings = findViewById(R.id.txttotalearnings);
+        earnings = findViewById(R.id.earnings);
 
         category = (Category) getIntent().getSerializableExtra("category");
         tv_title = findViewById(R.id.tv_title);
-        tv_title.setText(category.title);
+        String upperString = category.title.substring(0,1).toUpperCase() + category.title.substring(1);
+        tv_title.setText(upperString);
         button1 = findViewById(R.id.btn_100);
         button2 = findViewById(R.id.btn_200);
         button3 = findViewById(R.id.btn_300);
@@ -43,6 +45,7 @@ public class PointScreen extends AppCompatActivity implements View.OnClickListen
         button5.setOnClickListener(this);
     }
 
+    //sets the point buttons to gray and unclickable once certain point button is selected
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

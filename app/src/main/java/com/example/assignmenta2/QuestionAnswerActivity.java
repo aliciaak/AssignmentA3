@@ -61,6 +61,9 @@ public class QuestionAnswerActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     static boolean active = false;
 
+    //score is saved through sharedPreferences and maintained as user plays game
+    //https://stackoverflow.com/questions/35069461/how-to-save-score-to-sharedpreferences-then-update-it
+    //https://www.youtube.com/watch?v=mdKoebwwwtM
     @Override
     protected void onResume() {
         super.onResume();
@@ -103,11 +106,11 @@ public class QuestionAnswerActivity extends AppCompatActivity {
         Log.e("URL =>", "URL=>" + JSON_URL);
         getQuestionsAPI();
 
-//        mMediaPlayer = new MediaPlayer();
-//        mMediaPlayer = MediaPlayer.create(this, R.raw.game_sound);
-//        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//        mMediaPlayer.setLooping(true);
-//        mMediaPlayer.start();
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer = MediaPlayer.create(this, R.raw.game_sound);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
     }
 
     private void getQuestionsAPI() {
@@ -209,7 +212,6 @@ public class QuestionAnswerActivity extends AppCompatActivity {
         answered = true;
         countDownTimer.cancel();
 //        if(txtanswer.getText().toString().isEmpty()){
-//
 //        }else{
         if (tv_answer.getText().toString().trim().equalsIgnoreCase(currentQuestion.answer)) {
             score = score + Double.parseDouble(currentQuestion.value);
@@ -220,7 +222,6 @@ public class QuestionAnswerActivity extends AppCompatActivity {
         } else {
             showSolution(false);
         }
-//        }
     }
 
     private void showSolution(boolean isUserCorrect) {
@@ -242,9 +243,9 @@ public class QuestionAnswerActivity extends AppCompatActivity {
 
 
     private void finishQuiz() {
-//        if (mMediaPlayer != null)
-//            if (mMediaPlayer.isPlaying())
-//                mMediaPlayer.stop();
+        if (mMediaPlayer != null)
+            if (mMediaPlayer.isPlaying())
+                mMediaPlayer.stop();
         finish();
     }
 

@@ -47,10 +47,10 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+
         //
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        //
 
         getSupportActionBar().setTitle("Categories");
         db = AppDatabase.getInstance(ActivityCategory.this);
@@ -88,6 +88,8 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
 
                         categories.title = jsonObject.getString("title");
 
+                        //randomizes the background color of category list items
+                        //taken from https://www.tutorialspoint.com/how-to-set-random-background-for-recyclerview-in-android
                         Random rnd = new Random();
                         int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
                         categories.color = currentColor;
@@ -106,6 +108,7 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
 
                 insertCategoriesAsyncTask.execute(categories);
 
+                myAdapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -126,13 +129,6 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
             myAdapter = new AdapterCategory(ActivityCategory.this, listAnime);
         }
 
-//        myAdapter = new AdapterCategory(this, listAnime);
-//
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3, LinearLayoutManager.VERTICAL, false);
-//
-//        category_recycler.setLayoutManager(gridLayoutManager);
-//
-//        category_recycler.setAdapter(myAdapter);
     }
 
     @Override

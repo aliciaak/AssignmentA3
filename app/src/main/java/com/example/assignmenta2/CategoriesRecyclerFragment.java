@@ -45,6 +45,9 @@ public class CategoriesRecyclerFragment extends Fragment {
 
         final CategoriesAdapter categoriesAdapter = new CategoriesAdapter();
         final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
+
+        //Jeopardy API that returns 50 categories
+        // (this is currently set to show 50, can modify to 100+ - will just take longer to load)
         String url = "http://jservice.io/api/categories?count=50";
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             public void onResponse(String response) {

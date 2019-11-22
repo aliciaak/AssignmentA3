@@ -65,6 +65,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         public void bind(final Category category) {
             categoryText.setText(category.getTitle());
 
+            //like ActivityCategory, alters background of category to random colors
+            // https://www.tutorialspoint.com/how-to-set-random-background-for-recyclerview-in-android
             Random rnd = new Random();
             int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
             layoutmain.setBackgroundColor(currentColor);

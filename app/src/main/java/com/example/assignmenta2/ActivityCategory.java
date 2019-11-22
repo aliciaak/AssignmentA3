@@ -6,6 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.content.Intent;
+import android.graphics.Color;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -24,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ActivityCategory extends AppCompatActivity implements AsyncTaskDelegate {
 
@@ -35,19 +41,33 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
     private List<Category> listAnime;
     private RecyclerView category_recycler;
     AdapterCategory myAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        //
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        //
+
+        getSupportActionBar().setTitle("Categories");
         db = AppDatabase.getInstance(ActivityCategory.this);
+
+        progressBar = findViewById(R.id.progressbar);
         listAnime = new ArrayList<>();
         category_recycler = findViewById(R.id.category_recycler);
 
-        RetrieveCategoriesAsyncTask insertBooksAsyncTask = new RetrieveCategoriesAsyncTask();
-        insertBooksAsyncTask.setDatabase(db);
-        insertBooksAsyncTask.setDelegate(ActivityCategory.this);
-        insertBooksAsyncTask.execute();
+        myAdapter = new AdapterCategory(this, listAnime);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),3,LinearLayoutManager.VERTICAL,false);
+        category_recycler.setLayoutManager(gridLayoutManager);
+        category_recycler.setAdapter(myAdapter);
+
+        RetrieveCategoriesAsyncTask insertCategoriesAsyncTask = new RetrieveCategoriesAsyncTask();
+        insertCategoriesAsyncTask.setDatabase(db);
+        insertCategoriesAsyncTask.setDelegate(ActivityCategory.this);
+        insertCategoriesAsyncTask.execute();
 
         gsonRequest();
     }
@@ -57,14 +77,20 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
         request = new JsonArrayRequest(JSON_URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
+                JSONObject jsonObject;
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
                         Category categories = new Category();
 
+                        categories.id = jsonObject.getInt("id");
+
                         categories.title = jsonObject.getString("title");
+
+                        Random rnd = new Random();
+                        int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
+                        categories.color = currentColor;
 
                         listAnime.add(categories);
                     } catch (JSONException e) {
@@ -75,14 +101,16 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
                 InsertCategoriesAsyncTask insertCategoriesAsyncTask = new InsertCategoriesAsyncTask();
                 insertCategoriesAsyncTask.setDatabase(db);
                 insertCategoriesAsyncTask.setDelegate(ActivityCategory.this);
-                insertCategoriesAsyncTask.execute();
 
-                setuprecyclerview(listAnime);
+                Category[] categories = listAnime.toArray(new Category[listAnime.size()]);
+
+                insertCategoriesAsyncTask.execute(categories);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ActivityCategory.this, "Something went wrong." + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -91,27 +119,45 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
     }
 
 
-    private void setuprecyclerview(List<Category> listAnime) {
+    private void setuprecyclerview() {
+        if(myAdapter != null)
+            myAdapter.notifyDataSetChanged();
+        else {
+            myAdapter = new AdapterCategory(ActivityCategory.this, listAnime);
+        }
 
-        myAdapter = new AdapterCategory(this, listAnime);
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3, LinearLayoutManager.VERTICAL, false);
-
-        category_recycler.setLayoutManager(gridLayoutManager);
-
-        category_recycler.setAdapter(myAdapter);
+//        myAdapter = new AdapterCategory(this, listAnime);
+//
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3, LinearLayoutManager.VERTICAL, false);
+//
+//        category_recycler.setLayoutManager(gridLayoutManager);
+//
+//        category_recycler.setAdapter(myAdapter);
     }
 
     @Override
     public void handleTaskResult(String result) {
-        Toast.makeText(ActivityCategory.this, result, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(ActivityCategory.this, result, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void handleTaskResultRetrieveCategories(List<Category> result) {
         if (result.size() > 0) {
+
+            listAnime.clear();
+            listAnime.addAll(result);
             if (myAdapter != null)
                 myAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 }

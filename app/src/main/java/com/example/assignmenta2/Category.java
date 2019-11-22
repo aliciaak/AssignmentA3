@@ -15,6 +15,9 @@ public class Category implements Serializable {
     @SerializedName("title")
     public String title;
 
+    @SerializedName("color")
+    public int color;
+
     public int getId() {
         return id; }
 

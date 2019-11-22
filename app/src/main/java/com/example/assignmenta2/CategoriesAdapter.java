@@ -12,8 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder> {
 
@@ -46,18 +50,24 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         return categoryToAdapt.size();
     }
 
-    public static class CategoriesViewHolder extends RecyclerView.ViewHolder{
+    public static class CategoriesViewHolder extends RecyclerView.ViewHolder {
         public View view;
         public TextView categoryText;
+        public ConstraintLayout layoutmain;
 
         public CategoriesViewHolder(View v) {
             super(v);
             view = v;
             categoryText = v.findViewById(R.id.categoryt);
+            layoutmain = v.findViewById(R.id.layoutmain);
         }
 
         public void bind(final Category category) {
             categoryText.setText(category.getTitle());
+
+            Random rnd = new Random();
+            int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+            layoutmain.setBackgroundColor(currentColor);
         }
     }
 

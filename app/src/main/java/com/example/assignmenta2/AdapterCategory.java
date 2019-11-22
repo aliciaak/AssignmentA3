@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        view = inflater.inflate(R.layout.category_item,parent,false);
+        view = inflater.inflate(R.layout.category_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -41,6 +42,8 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
                 mContext.startActivity(new Intent(mContext, PointScreen.class).putExtra("category",categoryData.get(position)));
             }
         });
+
+        holder.layoutmain.setBackgroundColor(categoryData.get(position).color);
     }
 
     @Override
@@ -52,12 +55,13 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView category_title;
         public ImageView category_img;
+        public LinearLayout layoutmain;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             category_title = itemView.findViewById(R.id.category_title);
-            category_img = itemView.findViewById(R.id.category_img);
+            layoutmain = itemView.findViewById(R.id.layoutmain);
         }
     }
 }

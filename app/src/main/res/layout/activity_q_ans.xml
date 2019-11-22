@@ -36,7 +36,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/txtanswer"
+                android:id="@+id/tv_answer"
                 android:inputType="text"
                 android:maxLines="2"
                 android:layout_width="match_parent"

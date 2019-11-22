@@ -39,14 +39,13 @@ public class CategoriesRecyclerFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_categories_recycler, container, false);
 
-
         recyclerView = view.findViewById(R.id.rv2);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         final CategoriesAdapter categoriesAdapter = new CategoriesAdapter();
         final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
-        String url = "http://jservice.io/api/categories?count=100";
+        String url = "http://jservice.io/api/categories?count=50";
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             public void onResponse(String response) {
                 Gson gson = new Gson();

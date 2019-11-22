@@ -9,7 +9,7 @@
     tools:context=".HomeActivity">
 
     <LinearLayout
-        android:id="@+id/quiz"
+        android:id="@+id/quiz_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/randomfact"
+        android:id="@+id/randomfact_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"

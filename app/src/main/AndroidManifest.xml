@@ -15,7 +15,6 @@
         android:usesCleartextTraffic="true">
 
         <activity android:name=".ActivityCategory"/>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

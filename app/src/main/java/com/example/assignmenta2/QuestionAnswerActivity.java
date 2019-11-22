@@ -159,6 +159,12 @@ public class QuestionAnswerActivity extends AppCompatActivity {
 
     }
 
+    //countdown timer
+    //timer also indicates in red text when coming close to end of time period
+
+    //https://stackoverflow.com/questions/14393423/how-to-make-a-countdown-timer-in-java
+    //https://www.youtube.com/watch?v=bLUXfWkZMD8
+
     private void showNextQuestion() {
         tv_answer.setText("");
         if (questionCounter < questionCountTotal) {
@@ -177,7 +183,7 @@ public class QuestionAnswerActivity extends AppCompatActivity {
         if (countDownTimer != null)
             countDownTimer.cancel();
 
-        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1500) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeftInMillis = millisUntilFinished;

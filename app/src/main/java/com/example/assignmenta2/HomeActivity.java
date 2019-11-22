@@ -13,8 +13,9 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_new);
-        quiz = findViewById(R.id.quiz);
+        setContentView(R.layout.activity_home);
+        getSupportActionBar().setTitle("Welcome to Think Tank!");
+        quiz = findViewById(R.id.quiz_home);
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -22,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        randomfact = findViewById(R.id.randomfact);
+        randomfact = findViewById(R.id.randomfact_home);
         randomfact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

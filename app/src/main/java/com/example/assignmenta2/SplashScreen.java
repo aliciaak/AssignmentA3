@@ -22,6 +22,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        getSupportActionBar().hide();
 
         gif = findViewById(R.id.gif);
         lightbulb = findViewById(R.id.lightbulb);

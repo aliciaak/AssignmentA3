@@ -48,11 +48,11 @@ public class ActivityCategory extends AppCompatActivity implements AsyncTaskDele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        //
+        //enables back home button in support action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        getSupportActionBar().setTitle("Categories");
+        getSupportActionBar().setTitle("Pick your category...");
         db = AppDatabase.getInstance(ActivityCategory.this);
 
         progressBar = findViewById(R.id.progressbar);

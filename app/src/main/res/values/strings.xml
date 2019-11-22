@@ -22,6 +22,7 @@
 
     <string name="question">Question</string>
     <string name="hint">Type your answer here&#8230;</string>
+    <string name="fetch_qn">Fetching questions&#8230;</string>
     <string name="btn_go">GO</string>
 
 

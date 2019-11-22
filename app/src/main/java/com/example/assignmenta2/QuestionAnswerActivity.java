@@ -53,7 +53,7 @@ public class QuestionAnswerActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
     private boolean answered;
-    private static final long COUNTDOWN_IN_MILLIS = 30000;
+    private static final long COUNTDOWN_IN_MILLIS = 15000;
     private double score = 0;
     private long backPressedTime;
     MediaPlayer mMediaPlayer;
@@ -88,7 +88,7 @@ public class QuestionAnswerActivity extends AppCompatActivity {
         score = prefs.getLong("earnings", 0);
         editor = prefs.edit();
         tv_question = findViewById(R.id.tv_question);
-        tv_question.setText("Fetching questions...");
+        tv_question.setText(R.string.fetch_qn);
 
         tvCountDown = findViewById(R.id.tvCountDown);
         tv_answer = findViewById(R.id.tv_answer);
@@ -212,7 +212,7 @@ public class QuestionAnswerActivity extends AppCompatActivity {
 
         tvCountDown.setText(timeFormatted);
 
-        if (timeLeftInMillis < 10000) {
+        if (timeLeftInMillis < 6000) {
             tvCountDown.setTextColor(Color.RED);
         } else {
             tvCountDown.setTextColor(Color.WHITE);
@@ -222,8 +222,6 @@ public class QuestionAnswerActivity extends AppCompatActivity {
     private void checkAnswer() {
         answered = true;
         countDownTimer.cancel();
-//        if(txtanswer.getText().toString().isEmpty()){
-//        }else{
         if (tv_answer.getText().toString().trim().equalsIgnoreCase(currentQuestion.answer)) {
             score = score + Double.parseDouble(currentQuestion.value);
             editor.putLong("earnings", (long) score);

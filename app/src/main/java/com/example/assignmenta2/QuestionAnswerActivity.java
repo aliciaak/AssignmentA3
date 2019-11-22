@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -60,6 +61,7 @@ public class QuestionAnswerActivity extends AppCompatActivity {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     static boolean active = false;
+    boolean isBackFromGoogle = false;
 
     //score is saved through sharedPreferences and maintained as user plays game
     //https://stackoverflow.com/questions/35069461/how-to-save-score-to-sharedpreferences-then-update-it
@@ -68,6 +70,9 @@ public class QuestionAnswerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         earnings.setText("$" + prefs.getLong("earnings", 0));
+        if (isBackFromGoogle) {
+            showNextQuestion();
+        }
     }
 
     @Override
@@ -233,7 +238,7 @@ public class QuestionAnswerActivity extends AppCompatActivity {
     private void showSolution(boolean isUserCorrect) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         if (isUserCorrect)
-            builder.setMessage("You are correct.");
+            builder.setMessage("You are correct! Nice job :)");
         else
             builder.setMessage("Oops! The correct answer is actually " + currentQuestion.answer);
         builder.setCancelable(false)
@@ -241,7 +246,15 @@ public class QuestionAnswerActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         showNextQuestion();
                     }
-                });
+                }).setNegativeButton("View more!", new DialogInterface.OnClickListener() {
+
+            //implicit intent to allow users to search what the answer means (not! to cheat)
+            public void onClick(DialogInterface dialog, int id) {
+                isBackFromGoogle = true;
+                Intent implicit = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + currentQuestion.question));
+                startActivity(implicit);
+            }
+        });
         AlertDialog alert = builder.create();
         if (active)
             alert.show();
